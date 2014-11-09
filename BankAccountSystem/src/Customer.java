@@ -100,13 +100,15 @@ public class Customer {
 		return this.customerZipCode;
 	}
 	
+	public String getCustomerFullName(){
+		return this.firstName + " " + this.lastName;
+	}
+	
 	/* Playing with SecureRandom to generate a secure random account number*/
 	private static void random() {
 		//number = new SecureRandom.getInstance("SHA1PRNG");
 		number = new SecureRandom();
 		System.out.println((Math.ceil((number.nextDouble() * number.nextInt(10000000)))));
 	}
-	protected static void callRandom(){
-		Customer.random();
-	}
+	
 }

@@ -27,6 +27,7 @@ public abstract class Account {
 	private static final HashMap<Customer, List<Transaction>> customerAndTransactionMap = new HashMap<>();
 	private SecureRandom number;
 	private static Date transactionDateSetter = new Date();
+
 	//public constructor
 	public Account(int newAccountNumber, Customer newCustomerReference)
 	{
@@ -70,6 +71,15 @@ public abstract class Account {
 		return this.customerReference;
 	}
 	
+	public double getTotalDeposit()
+	{
+		return this.totalDeposit;
+	}
+	
+	public double getTotalWithdrawal()
+	{
+		return this.totalWithdrawal;
+	}
 	
 	//Deposit & Withdrawal Methods
 	private void deposit(double amount)
@@ -101,6 +111,7 @@ public abstract class Account {
 		}
 	}
 	
+	
 	protected void processTransaction(int transType, double amount)
 	{	
 		this.chooseTransactionOption(transType, amount);//call method to make deposit or withdrawal
@@ -108,7 +119,7 @@ public abstract class Account {
 		//checks if balance is overdrawn
 		if(this.getBalance() < 0)
 		{
-				
+			
 			//if balance is overdrawn, retrieve the status of the account from Customer class using Customer reference
 			String checkStatus = this.customerReference.getCustomerStatus();//get the customer status
 			//check what type of status the account owner is
@@ -128,42 +139,64 @@ public abstract class Account {
 		else 
 		{
 			//if the account owner is not overdrawn
-			this.transactionArrayList.add(new Transaction(transType, transactionDateSetter, amount, ""));
+			this.transactionArrayList.add(new Transaction(transType, transactionDateSetter, amount, " "));
 		}
 	}
 	
 	
 	
-	/*
-	protected void getAllTransaction()
-	{
-		for(Transaction trans : (this.customerAndTransactionMap.get(this.customerReference)))
-		{
-			System.out.printf("Transaction Date: %s%nTransaction Type: %s%nTransaction Amount %f%nMessage: %s%n", trans.getTransDay(), trans.getTransType(), trans.getAmount(), trans.getMessage());
-		}
-	}*/
+	
+
 	
 	private static void getAllTransaction(Customer customer)
 	{
 		for(Transaction trans : (customerAndTransactionMap.get(customer)))
 		{
-			System.out.printf("Transaction Date: %s%nTransaction Type: %s%nTransaction Amount %f%nMessage: %s%n", trans.getTransDay(), trans.getTransType(), trans.getAmount(), trans.getMessage());
+			System.out.printf("Transaction Date: %s%nTransaction Type: %s%nTransaction Amount: $%.2f%n", trans.getTransDay(), trans.getTransType(), trans.getAmount());
+			if(!trans.getMessage().equalsIgnoreCase(" ")){
+				System.out.printf("Message: %s%n", trans.getMessage());
+			}
+			System.out.println("------------------------------");
 		}
+		System.out.println("");
 	}
+	//this prints a list of all customers and their transactions. Is for project3, would remove in production.
 	protected static void getAllCustomers()
 	{
 		for(Customer customer: (customerAndTransactionMap.keySet()))
 		{
 			//System.out.println(customer.getClass());
-			System.out.println(customer.getCustomerFirstName());
+			System.out.printf("Name:   %s%nStatus: %s%n",customer.getCustomerFullName(), customer.getCustomerStatus());
+			
 			getAllTransaction(customer);
 		}
 	}
 	
-	public String getTransactionsByDay()
+	
+	protected String getCustomerTransaction()
 	{
-		return "";
+		StringBuilder newString = new StringBuilder(500);
+		
+		for(Transaction trans : (customerAndTransactionMap.get(this.customerReference)))
+		{
+			newString.append(String.format("Transaction Date:   %s%n", trans.getTransDay()))
+					 .append(String.format("Transaction Type:   %s%n",trans.getTransType()))
+					 .append(String.format("Transaction Amount: $%.2f%n", trans.getAmount()));
+			//System.out.printf("Transaction Date: %s%nTransaction Type: %s%nTransaction Amount: $%.2f%n", trans.getTransDay(), trans.getTransType(), trans.getAmount());
+			if(!trans.getMessage().equalsIgnoreCase(" ")){
+				
+				newString.append(String.format("Message: %s%n",trans.getMessage()));
+				//System.out.printf("Message: %s%n", trans.getMessage());
+			}
+			newString.append(String.format("------------------------------%n"));
+			//System.out.println("------------------------------");
+		}
+		newString.append(String.format("%n"));
+		//System.out.println("");
+		return newString.toString();
 	}
+	
+	
 	
 	
 	
@@ -184,5 +217,5 @@ public abstract class Account {
 		printMap();
 	}
 	public abstract double computeAverageBalance();
-	public abstract void printStatement();
+	public abstract String printStatement();
 }

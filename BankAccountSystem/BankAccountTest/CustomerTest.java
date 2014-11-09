@@ -66,10 +66,7 @@ public class CustomerTest {
 	
 	}
 	
-	@Test 
-	public void randomTest(){
-		Customer.callRandom();
-	}
+	
 	
 	
 }

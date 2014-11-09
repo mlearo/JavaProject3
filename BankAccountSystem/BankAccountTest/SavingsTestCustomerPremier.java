@@ -15,7 +15,7 @@ public class SavingsTestCustomerPremier {
 	private final String state = "California";
 	private final int zipCode = 92126;
 	private Customer testCustomerPremier;
-	private Savings testCustomerSavings;
+	private Account testCustomerSavings;
 	
 	
 	
@@ -46,17 +46,14 @@ public class SavingsTestCustomerPremier {
 	}
 	
 	@Test
-	public void getAllTransactionsTest(){
-		//testCustomerSavings.getAllTransaction();
-		
-		//testCustomerSavingsRegular.getAllTransaction();
-
+	public void accountNumTest(){
+		assertTrue(testCustomerSavings.getBeginningBalance() == 2000.00);
 	}
-	
 	@Test
 	public void testGetAllCustomer(){
 		
-		Account.getAllCustomers();
+		//Account.getAllCustomers();
+		System.out.print(testCustomerSavings.printStatement());
 	}
 	
 }

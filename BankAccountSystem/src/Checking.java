@@ -29,8 +29,9 @@ public class Checking extends Account{
 	}	
 	
 	@Override
-	public void printStatement()
+	public String printStatement()
 	{	
+		return "";
 	}
 	
 }
