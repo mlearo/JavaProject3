@@ -25,9 +25,9 @@ public class CheckingTest {
 		testCustomerPremier = new Customer.Builder(firstName, lastName, status).setStreetAddress(streetAddress).setCity(city).setState(state).setZipcode(zipCode).build();
 		testCustomerCheckingPremier = new Checking(10000, testCustomerPremier);
 		testCustomerCheckingPremier.setBeginningBalance(2000.00);
-		testCustomerCheckingPremier.processTransaction(1,  200.00);
-		testCustomerCheckingPremier.processTransaction(1,  300.00);
-		testCustomerCheckingPremier.processTransaction(-1, 500.00);
-		testCustomerCheckingPremier.processTransaction(-1, 2100.00);
+		testCustomerCheckingPremier.processTransaction(1, 200.00, 5);
+		testCustomerCheckingPremier.processTransaction(1,  300.00, 10);
+		testCustomerCheckingPremier.processTransaction(-1, 500.00, 21);
+		testCustomerCheckingPremier.processTransaction(-1, 2100.00 , 7);
 	}
 }

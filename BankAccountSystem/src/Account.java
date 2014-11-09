@@ -112,7 +112,7 @@ public abstract class Account {
 	}
 	
 	
-	protected void processTransaction(int transType, double amount)
+	protected void processTransaction(int transType, double amount, int transDay)
 	{	
 		this.chooseTransactionOption(transType, amount);//call method to make deposit or withdrawal
 				
@@ -127,29 +127,32 @@ public abstract class Account {
 				{
 					//if account owner is overdrawn and has status of regular 
 					this.chooseTransactionOption(-1, 40); 
-					 customerAndTransactionMap.get(this.customerReference).add(new Transaction(transType, transactionDateSetter, amount, "Your account is overdrawn by " + this.getBalance())); 
+					 customerAndTransactionMap.get(this.customerReference).add(new Transaction(transType,transDay, amount, "Your account is overdrawn by " + this.getBalance())); 
 				} 
 			else 
 				{
 					//if account owner is overdrawn and has status of premier 
 					this.chooseTransactionOption(-1, 10); 
-					customerAndTransactionMap.get(this.customerReference).add(new Transaction(transType, transactionDateSetter, amount, "Your account is overdrawn by " + this.getBalance()));
+					customerAndTransactionMap.get(this.customerReference).add(new Transaction(transType, transDay, amount, "Your account is overdrawn by " + this.getBalance()));
 				}
 		} 
 		else 
 		{
 			//if the account owner is not overdrawn
-			this.transactionArrayList.add(new Transaction(transType, transactionDateSetter, amount, " "));
+			this.transactionArrayList.add(new Transaction(transType, transDay, amount, " "));
 		}
 	}
 	
 	
-	
+
 	
 
 	
 	private static void getAllTransaction(Customer customer)
 	{
+		
+		Collections.sort(customerAndTransactionMap.get(customer), Transaction.transactionDate); 
+		
 		for(Transaction trans : (customerAndTransactionMap.get(customer)))
 		{
 			System.out.printf("Transaction Date: %s%nTransaction Type: %s%nTransaction Amount: $%.2f%n", trans.getTransDay(), trans.getTransType(), trans.getAmount());
@@ -160,6 +163,9 @@ public abstract class Account {
 		}
 		System.out.println("");
 	}
+	
+	
+	
 	//this prints a list of all customers and their transactions. Is for project3, would remove in production.
 	protected static void getAllCustomers()
 	{
@@ -173,9 +179,12 @@ public abstract class Account {
 	}
 	
 	
+	
 	protected String getCustomerTransaction()
 	{
 		StringBuilder newString = new StringBuilder(500);
+		
+		Collections.sort(customerAndTransactionMap.get(this.customerReference), Transaction.transactionDate); 
 		
 		for(Transaction trans : (customerAndTransactionMap.get(this.customerReference)))
 		{
@@ -203,6 +212,7 @@ public abstract class Account {
 	
 	
 	//below doesn't really have a purpose yet just learning how to navigate data structures
+	/*
 	private void printMap(){
 		for (Map.Entry<Customer, List<Transaction>> entry : customerAndTransactionMap.entrySet()) 
 		{
@@ -216,6 +226,7 @@ public abstract class Account {
 	{
 		printMap();
 	}
+	*/
 	public abstract double computeAverageBalance();
 	public abstract String printStatement();
 }

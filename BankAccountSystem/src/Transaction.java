@@ -8,19 +8,23 @@
  * 
  * */
 import java.util.Date;
+import java.util.Comparator;
+
+
 
 public class Transaction {
 
 	
 	private int transactionType;
-	private Date transactionDay;
+	private int transactionDay;
 	private double transactionAmount;
 	private String transactionMessage;
 	
 	
-	public Transaction(int newTransactionType, Date newTransactionDay, double newTransactionAmount, String newMessage)
+	public Transaction(int newTransactionType, int newTransactionDay, double newTransactionAmount, String newMessage)
 	{
 		this.transactionType = newTransactionType;
+		//this.transactionDay = newTransactionDay;
 		this.transactionDay = newTransactionDay;
 		this.transactionAmount = newTransactionAmount;
 		this.transactionMessage = newMessage;
@@ -31,10 +35,10 @@ public class Transaction {
 		return (this.transactionType == -1) ? "Withdrawal" : "Deposit";
 	}
 	
-	protected String getTransDay()
+	protected int getTransDay()
 	{
 		
-		return this.transactionDay.toString(); 
+		return this.transactionDay; 
 	}
 	
 	protected double getAmount()
@@ -46,4 +50,16 @@ public class Transaction {
 	{
 		return this.transactionMessage;
 	}
+
+	public static Comparator<Transaction> transactionDate = new Comparator<Transaction>(){
+		
+		public int compare(Transaction tran1, Transaction tran2){
+			
+			int first = tran1.transactionDay;
+			int second = tran2.transactionDay;
+			
+			return first - second;
+		}
+		
+	};
 }

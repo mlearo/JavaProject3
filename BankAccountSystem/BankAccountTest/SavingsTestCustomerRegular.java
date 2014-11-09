@@ -22,10 +22,10 @@ public class SavingsTestCustomerRegular {
 		testCustomerRegular = new Customer.Builder(firstName, lastName, statusRegular).setStreetAddress(streetAddress).setCity(city).setState(state).setZipcode(zipCode).build();
 		testCustomerSavingsRegular = new Savings(20000, testCustomerRegular);
 		testCustomerSavingsRegular.setBeginningBalance(2000.00);
-		testCustomerSavingsRegular.processTransaction(1, 200.00);
-		testCustomerSavingsRegular.processTransaction(1, 300.00);
-		testCustomerSavingsRegular.processTransaction(-1, 500.00);
-		testCustomerSavingsRegular.processTransaction(-1, 2100.00);
+		testCustomerSavingsRegular.processTransaction(1, 200.00, 1);
+		testCustomerSavingsRegular.processTransaction(1, 300.00,  3);
+		testCustomerSavingsRegular.processTransaction(-1, 500.00, 5);
+		testCustomerSavingsRegular.processTransaction(-1, 2100.00,  17);
 
 	}
 	
