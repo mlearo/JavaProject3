@@ -16,17 +16,18 @@ public class CheckingTest {
 	private final int zipCode = 92126;
 	private Customer testCustomerPremier;
 	private Customer testCustomerRegular;
-	private Checking testCustomerChecking;
+	private Checking testCustomerCheckingPremier;
+	private Checking testCustomerCheckingRegular;
 	
 	
 	@Before
 	public void initChecking(){
 		testCustomerPremier = new Customer.Builder(firstName, lastName, status).setStreetAddress(streetAddress).setCity(city).setState(state).setZipcode(zipCode).build();
-		testCustomerChecking = new Checking(10000, testCustomerPremier);
-		testCustomerChecking.setBeginningBalance(2000.00);
-		testCustomerChecking.processTransaction(1, 25, 200.00);
-		testCustomerChecking.processTransaction(1, 2, 300.00);
-		testCustomerChecking.processTransaction(-1, 3, 500.00);
-		testCustomerChecking.processTransaction(-1, 17, 2100.00);
+		testCustomerCheckingPremier = new Checking(10000, testCustomerPremier);
+		testCustomerCheckingPremier.setBeginningBalance(2000.00);
+		testCustomerCheckingPremier.processTransaction(1,  200.00);
+		testCustomerCheckingPremier.processTransaction(1,  300.00);
+		testCustomerCheckingPremier.processTransaction(-1, 500.00);
+		testCustomerCheckingPremier.processTransaction(-1, 2100.00);
 	}
 }

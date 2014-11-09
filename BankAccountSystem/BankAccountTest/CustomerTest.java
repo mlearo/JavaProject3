@@ -16,16 +16,11 @@ public class CustomerTest {
 	private final int zipCode = 92126;
 	private final int deposit = 1;
 	private final int withdrawal = -1;
-	
-	private Customer.Builder testCustomer;
+	private Customer testCustomer;
 	
 	@Before
-	public void createCustomerInstance(){
-		testCustomer = new Customer.Builder(firstName, lastName, status);
-		testCustomer.setStreetAddress(streetAddress).build();
-		testCustomer.setCity(city).build();
-		testCustomer.setState(state).build();
-		testCustomer.setZipcode(zipCode).build();
+	public void init(){
+		testCustomer = new Customer.Builder(firstName, lastName, status).setStreetAddress(streetAddress).setCity(city).setState(state).setZipcode(zipCode).build();
 	}
 	
 	@Test

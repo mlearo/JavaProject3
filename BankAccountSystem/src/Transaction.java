@@ -7,16 +7,18 @@
  * 
  * 
  * */
+import java.util.Date;
 
 public class Transaction {
 
+	
 	private int transactionType;
-	private int transactionDay;
+	private Date transactionDay;
 	private double transactionAmount;
 	private String transactionMessage;
 	
 	
-	public Transaction(int newTransactionType, int newTransactionDay, double newTransactionAmount, String newMessage)
+	public Transaction(int newTransactionType, Date newTransactionDay, double newTransactionAmount, String newMessage)
 	{
 		this.transactionType = newTransactionType;
 		this.transactionDay = newTransactionDay;
@@ -24,14 +26,15 @@ public class Transaction {
 		this.transactionMessage = newMessage;
 	}
 	
-	protected int getTransType()
+	protected String getTransType()
 	{	
-		return this.transactionType;
+		return (this.transactionType == -1) ? "Withdrawal" : "Deposit";
 	}
 	
-	protected int getTransDay()
+	protected String getTransDay()
 	{
-		return this.transactionDay;
+		
+		return this.transactionDay.toString(); 
 	}
 	
 	protected double getAmount()

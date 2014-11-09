@@ -14,7 +14,7 @@ public class Customer {
 
 	private final String firstName;
 	private final String lastName;
-	private final String customerAddress;
+	private final String customerStreetAddress;
 	private final String customerCity;
 	private final String customerState;
 	private final String customerStatus;
@@ -56,33 +56,8 @@ public class Customer {
 			return new Customer(this);
 		}
 		
-		public String getCustomerFirstName(){
-			return this.firstName;
-		}
 		
-		public String getCustomerLastName(){
-			return this.lastName;
-		}
 		
-		public String getCustomerStatus(){
-			return this.customerStatus;
-		}
-		
-		public String getCustomerStreetAddress(){
-			return this.customerStreetAddress;
-		}
-		
-		public String getCustomerCity(){
-			return this.customerCity;
-		}
-		
-		public String getCustomerState(){
-			return this.customerState;
-		}
-		
-		public int getCustomerZipCode(){
-			return this.customerZipCode;
-		}
 	}
 	
 	private Customer(Builder builder)
@@ -90,16 +65,41 @@ public class Customer {
 		firstName = builder.firstName;
 		lastName = builder.lastName;
 		customerStatus = builder.customerStatus;
-		customerAddress = builder.customerStreetAddress;
+		customerStreetAddress = builder.customerStreetAddress;
 		customerCity = builder.customerCity;
 		customerState = builder.customerState;
 		customerZipCode = builder.customerZipCode;
 		
 	}
 	
+	public String getCustomerFirstName(){
+		return this.firstName;
+	}
+	
+	public String getCustomerLastName(){
+		return this.lastName;
+	}
+	
 	public String getCustomerStatus(){
 		return this.customerStatus;
 	}
+	
+	public String getCustomerStreetAddress(){
+		return this.customerStreetAddress;
+	}
+	
+	public String getCustomerCity(){
+		return this.customerCity;
+	}
+	
+	public String getCustomerState(){
+		return this.customerState;
+	}
+	
+	public int getCustomerZipCode(){
+		return this.customerZipCode;
+	}
+	
 	/* Playing with SecureRandom to generate a secure random account number*/
 	private static void random() {
 		//number = new SecureRandom.getInstance("SHA1PRNG");
