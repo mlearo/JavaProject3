@@ -4,7 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 
-public class SavingsTestCustomerRegular {
+public class SavingsCustomerRegularTest {
 
 	private final String firstName = "James";
 	private final String lastName = "Gonzalez";

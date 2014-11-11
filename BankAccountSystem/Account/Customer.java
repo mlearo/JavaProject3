@@ -20,48 +20,54 @@ public class Customer {
 	private final String customerStatus;
 	private final int customerZipCode;
 	private static SecureRandom number;
-	
-	public static class Builder{
-		//Required parameters
+
+	public static class Builder {
+		// Required parameters
 		private String firstName;
 		private String lastName;
 		private String customerStatus;
-		
-		//Optional parameters
+
+		// Optional parameters
 		private String customerStreetAddress = " ";
 		private String customerCity = " ";
 		private String customerState = " ";
 		private int customerZipCode = 00000;
-		
-		public Builder(String newFirstName, String newLastName, String newCustomerStatus){
-			
+
+		public Builder(String newFirstName, String newLastName,
+				String newCustomerStatus) {
+
 			this.firstName = newFirstName;
 			this.lastName = newLastName;
 			this.customerStatus = newCustomerStatus;
 		}
-		
-		public Builder setStreetAddress(String newCustomerAddress)
-			{this.customerStreetAddress = newCustomerAddress; return this;}
-		
-		public Builder setCity(String newCity)
-			{this.customerCity = newCity;	return this;}
-		
-		public Builder setState(String newState)
-			{this.customerState = newState;		return this;}
-		
-		public Builder setZipcode(int newZipCode)
-			{ this.customerZipCode = newZipCode;	return this;}
-		
-		public Customer build(){
+
+		public Builder setStreetAddress(String newCustomerAddress) {
+			this.customerStreetAddress = newCustomerAddress;
+			return this;
+		}
+
+		public Builder setCity(String newCity) {
+			this.customerCity = newCity;
+			return this;
+		}
+
+		public Builder setState(String newState) {
+			this.customerState = newState;
+			return this;
+		}
+
+		public Builder setZipcode(int newZipCode) {
+			this.customerZipCode = newZipCode;
+			return this;
+		}
+
+		public Customer build() {
 			return new Customer(this);
 		}
-		
-		
-		
+
 	}
-	
-	private Customer(Builder builder)
-	{
+
+	private Customer(Builder builder) {
 		firstName = builder.firstName;
 		lastName = builder.lastName;
 		customerStatus = builder.customerStatus;
@@ -69,46 +75,47 @@ public class Customer {
 		customerCity = builder.customerCity;
 		customerState = builder.customerState;
 		customerZipCode = builder.customerZipCode;
-		
+
 	}
-	
-	public String getCustomerFirstName(){
+
+	public String getCustomerFirstName() {
 		return this.firstName;
 	}
-	
-	public String getCustomerLastName(){
+
+	public String getCustomerLastName() {
 		return this.lastName;
 	}
-	
-	public String getCustomerStatus(){
+
+	public String getCustomerStatus() {
 		return this.customerStatus;
 	}
-	
-	public String getCustomerStreetAddress(){
+
+	public String getCustomerStreetAddress() {
 		return this.customerStreetAddress;
 	}
-	
-	public String getCustomerCity(){
+
+	public String getCustomerCity() {
 		return this.customerCity;
 	}
-	
-	public String getCustomerState(){
+
+	public String getCustomerState() {
 		return this.customerState;
 	}
-	
-	public int getCustomerZipCode(){
+
+	public int getCustomerZipCode() {
 		return this.customerZipCode;
 	}
-	
-	public String getCustomerFullName(){
+
+	public String getCustomerFullName() {
 		return this.firstName + " " + this.lastName;
 	}
-	
-	/* Playing with SecureRandom to generate a secure random account number*/
+
+	/* Playing with SecureRandom to generate a secure random account number */
 	private static void random() {
-		//number = new SecureRandom.getInstance("SHA1PRNG");
+		// number = new SecureRandom.getInstance("SHA1PRNG");
 		number = new SecureRandom();
-		System.out.println((Math.ceil((number.nextDouble() * number.nextInt(10000000)))));
+		System.out.println((Math.ceil((number.nextDouble() * number
+				.nextInt(10000000)))));
 	}
-	
+
 }
